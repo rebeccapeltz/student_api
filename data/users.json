@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Alice",
+    "school": "Wonderland High"
+  },
+  {
+    "id": 2,
+    "name": "Bob",
+    "school": "Builder's Academy"
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "school": "Chocolate Factory"
+  },
+  {
+    "id": 4,
+    "name": "Flix",
+    "school": "Flix Academy"
+  },
+  {
+    "name": "becky",
+    "school": "Nova",
+    "id": 5
+  },
+  {
+    "name": "Dan",
+    "school": "Electric Academy",
+    "id": 6
+  },
+  {
+    "name": "Jim",
+    "school": "Boat School",
+    "id": 7
+  },
+  {
+    "name": "Justin",
+    "school": "UC Berkeley",
+    "id": 10
+  }
+]
