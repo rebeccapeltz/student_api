@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Students() {
   const [students, setStudents] = useState([]);
@@ -13,10 +14,6 @@ export default function Students() {
 
   // Fetch students on mount
   // default method is GET
-  // useEffect is a hook that runs after the component mounts
-  // It fetches the list of students from the API
-  // and sets the students state
-  // The empty array [] means it runs only once when the component mounts
 
   useEffect(() => {
     fetch("/api/students")
@@ -90,6 +87,11 @@ export default function Students() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        <p>
+          <Link href="/" className={styles.link}>
+            Diagram
+          </Link>
+        </p>
         <h1>Student Registration</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
@@ -137,28 +139,30 @@ export default function Students() {
           </tbody>
         </table>
 
-         {/* --- Student Search Section --- */}
-      <h2>Find Student by ID</h2>
-      <form onSubmit={handleSearch} style={{ marginTop: "2rem" }}>
-        <input
-          type="number"
-          placeholder="Enter student ID"
-          value={searchId}
-          onChange={e => setSearchId(e.target.value)}
-          className={styles.input}
-        />
-        <button type="submit" className={styles.button}>Search</button>
-      </form>
-      {searchError && <p className={styles.error}>{searchError}</p>}
-      {foundStudent && (
-        <div style={{ marginTop: "1rem" }}>
-          <strong>Student Found:</strong>
-          <ul>
-            <li>ID: {foundStudent.id}</li>
-            <li>Name: {foundStudent.name}</li>
-            <li>School: {foundStudent.school}</li>
-          </ul>
-        </div>
+        {/* --- Student Search Section --- */}
+        <h2>Find Student by ID</h2>
+        <form onSubmit={handleSearch} style={{ marginTop: "2rem" }}>
+          <input
+            type="number"
+            placeholder="Enter student ID"
+            value={searchId}
+            onChange={(e) => setSearchId(e.target.value)}
+            className={styles.input}
+          />
+          <button type="submit" className={styles.button}>
+            Search
+          </button>
+        </form>
+        {searchError && <p className={styles.error}>{searchError}</p>}
+        {foundStudent && (
+          <div style={{ marginTop: "1rem" }}>
+            <strong>Student Found:</strong>
+            <ul>
+              <li>ID: {foundStudent.id}</li>
+              <li>Name: {foundStudent.name}</li>
+              <li>School: {foundStudent.school}</li>
+            </ul>
+          </div>
         )}
       </main>
     </div>

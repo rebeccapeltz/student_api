@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const students = JSON.parse(fileContents);
   // console.log(`Parsed students: ${JSON.stringify(students)}`);
 
-  // PUT, PATCH, DELETE requests provide a query string parameter `id`
+  // GET, PUT, PATCH, DELETE requests provide a query string parameter `id`
   // to identify which student to update or delete.
   const { id } = req.query; // Get the string ID from the dynamic route parameter
   console.log('id: ',id)

@@ -23,7 +23,6 @@
 
 .footer a {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-grow: 1;
 }
@@ -123,4 +122,13 @@
 .link{
   color: #0070f3;
   text-decoration: none;
+}
+
+
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Horizontally center items */
+  align-items: center; /* Vertically center items (if the container has height) */
+  height: 100vh; /* Example: make container fill viewport height for vertical centering */
 }
