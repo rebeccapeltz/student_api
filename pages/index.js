@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -21,16 +22,18 @@ export default function Home() {
             Student Registration
           </Link>
         </p>
-        <div className="centered-image">
-          <img
-            srcset="/images/rest_api_375.png 375w, /images/rest_api_800.png 800w"
-            sizes="(width <= 600px) 375px,800px"
+    
+ 
+
+          <Image
             src="/images/rest_api_800.png"
-            alt="REST API diagram"
+            alt="REST API Diagram"
+            width={800}
+            height={450}
+            style={{ width: "100%", height: "auto", maxWidth: "800px" }}
+            sizes="(max-width: 600px) 375px, 800px"
           />
-
-        </div>
-
+        
       </main>
       <footer className={styles.footer}>
         <h3>Image Credits</h3>
