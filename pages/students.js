@@ -7,9 +7,19 @@ export default function Students() {
   const [error, setError] = useState("");
   const [newStudentId, setNewStudentId] = useState(null); // Track new student
 
+  const [searchId, setSearchId] = useState("");
+  const [foundStudent, setFoundStudent] = useState(null);
+  const [searchError, setSearchError] = useState("");
+
   // Fetch students on mount
+  // default method is GET
+  // useEffect is a hook that runs after the component mounts
+  // It fetches the list of students from the API
+  // and sets the students state
+  // The empty array [] means it runs only once when the component mounts
+
   useEffect(() => {
-    fetch("/api/users")
+    fetch("/api/students")
       .then((res) => res.json())
       .then(setStudents);
   }, []);
@@ -27,7 +37,7 @@ export default function Students() {
       setError("Name and school are required.");
       return;
     }
-    const res = await fetch("/api/users", {
+    const res = await fetch("/api/students", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -47,7 +57,7 @@ export default function Students() {
 
   // Handle delete student
   async function handleDelete(id) {
-    const res = await fetch("/api/users", {
+    const res = await fetch("/api/students", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
@@ -57,6 +67,23 @@ export default function Students() {
     } else {
       const data = await res.json();
       setError(data.error || "Failed to delete student.");
+    }
+  }
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    setFoundStudent(null);
+    setSearchError("");
+    if (!searchId) {
+      setSearchError("Please enter a student ID.");
+      return;
+    }
+    const res = await fetch(`/api/students/${searchId}`);
+    if (res.ok) {
+      const student = await res.json();
+      setFoundStudent(student);
+    } else {
+      setSearchError("Student not found.");
     }
   }
 
@@ -109,6 +136,30 @@ export default function Students() {
             ))}
           </tbody>
         </table>
+
+         {/* --- Student Search Section --- */}
+      <h2>Find Student by ID</h2>
+      <form onSubmit={handleSearch} style={{ marginTop: "2rem" }}>
+        <input
+          type="number"
+          placeholder="Enter student ID"
+          value={searchId}
+          onChange={e => setSearchId(e.target.value)}
+          className={styles.input}
+        />
+        <button type="submit" className={styles.button}>Search</button>
+      </form>
+      {searchError && <p className={styles.error}>{searchError}</p>}
+      {foundStudent && (
+        <div style={{ marginTop: "1rem" }}>
+          <strong>Student Found:</strong>
+          <ul>
+            <li>ID: {foundStudent.id}</li>
+            <li>Name: {foundStudent.name}</li>
+            <li>School: {foundStudent.school}</li>
+          </ul>
+        </div>
+        )}
       </main>
     </div>
   );

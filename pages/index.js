@@ -22,12 +22,20 @@ export default function Home() {
             Student Registration
           </Link>
         </p>
-        <div style={{ position: 'relative', width: '70%', height: '500px' }}>
-          {/* <p className={styles.description}>
-          A simple REST API built with Next.js
-        </p> */}
-          <Image src="/rest_api.png" alt="REST API" fill/>
+        <div style={{ width: "80%" }}>
+          <Image
+            src="/rest_api.png"
+            alt="Rest API diagram: sharing state, client, server, database"
+            layout="responsive"
+            width={400}
+            height={300}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Example sizes
+          />
         </div>
+
+        {/* <div style={{ position: 'relative', width: '70%', height: '500px' }}>
+          <Image src="/rest_api.png" alt="REST API" fill/>
+        </div> */}
         {/*        
 
         <p className={styles.description}>
